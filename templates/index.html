@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Latest Listings</h3>
+<div class="row">
+  {% for p in properties %}
+  <div class="col-md-4 mb-3">
+    <div class="card h-100">
+      {% if p.image_filename %}
+      <img class="card-img-top" src="{{ url_for('uploaded_file', filename=p.image_filename) }}" alt="image">
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{ p.title }}</h5>
+        <div class="small text-muted">{{ p.location }}</div>
+        <div class="mt-2">
+          {% if p.sale_or_rent == 'sale' %}
+            <span class="badge bg-primary">For Sale</span>
+            {% if p.price %}<strong> ₹{{ '%.0f'|format(p.price) }}</strong>{% endif %}
+          {% else %}
+            <span class="badge bg-info text-dark">For Rent</span>
+            {% if p.rent %}<strong> ₹{{ '%.0f'|format(p.rent) }}/mo</strong>{% endif %}
+          {% endif %}
+        </div>
+        <a href="{{ url_for('property_detail', pid=p.id) }}" class="btn btn-sm btn-outline-primary mt-3">View</a>
+      </div>
+    </div>
+  </div>
+  {% else %}
+    <p>No properties yet. Be the first to add!</p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Register</h3>
+<form method="post" class="row g-3">
+  <div class="col-md-4">
+    <label class="form-label">Name</label>
+    <input class="form-control" name="name" required>
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Email</label>
+    <input class="form-control" name="email" type="email" required>
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Role</label>
+    <select class="form-select" name="role">
+      <option value="owner">Owner</option>
+      <option value="customer">Customer</option>
+    </select>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Password</label>
+    <input class="form-control" name="password" type="password" required>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-success">Register</button>
+    <a class="btn btn-link" href="{{ url_for('login') }}">I already have an account</a>
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Edit Property</h3>
+<form method="post" enctype="multipart/form-data" class="row g-3">
+  <div class="col-md-6">
+    <label class="form-label">Title</label>
+    <input class="form-control" name="title" value="{{ property.title }}" required>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Location</label>
+    <input class="form-control" name="location" value="{{ property.location }}" required>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Type</label>
+    <select class="form-select" name="property_type" required>
+      <option value="land"  {{ 'selected' if property.property_type=='land' else '' }}>Land</option>
+      <option value="house" {{ 'selected' if property.property_type=='house' else '' }}>House</option>
+    </select>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Sale / Rent</label>
+    <select class="form-select" name="sale_or_rent" required>
+      <option value="sale" {{ 'selected' if property.sale_or_rent=='sale' else '' }}>Sale</option>
+      <option value="rent" {{ 'selected' if property.sale_or_rent=='rent' else '' }}>Rent</option>
+    </select>
+  </div>
+
+  <div class="col-md-4">
+    <label class="form-label">Price (sale)</label>
+    <input type="number" step="0.01" class="form-control" name="price" value="{{ property.price or '' }}">
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Rent / month</label>
+    <input type="number" step="0.01" class="form-control" name="rent" value="{{ property.rent or '' }}">
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Area</label>
+    <input type="number" step="0.01" class="form-control" name="area" value="{{ property.area or '' }}">
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Rooms</label>
+    <input type="number" class="form-control" name="rooms" value="{{ property.rooms or '' }}">
+  </div>
+  <div class="col-md-8">
+    <label class="form-label">Contact</label>
+    <input class="form-control" name="contact" value="{{ property.contact }}" required>
+  </div>
+
+  <div class="col-12">
+    <label class="form-label">Description</label>
+    <textarea class="form-control" name="description" rows="3">{{ property.description }}</textarea>
+  </div>
+
+  <div class="col-12">
+    <label class="form-label">Google Maps Link (optional)</label>
+    <input class="form-control" name="gmap_link" value="{{ property.gmap_link or '' }}">
+  </div>
+
+  <div class="col-12">
+    {% if property.image_filename %}
+      <p>Current Image:</p>
+      <img src="{{ url_for('uploaded_file', filename=property.image_filename) }}" class="img-fluid mb-2" style="max-height:180px;">
+    {% endif %}
+    <label class="form-label">Replace Image</label>
+    <input type="file" class="form-control" name="image" accept="image/*">
+  </div>
+
+  <div class="col-12">
+    <button class="btn btn-primary">Save Changes</button>
+    <a class="btn btn-secondary" href="{{ url_for('property_detail', pid=property.id) }}">Cancel</a>
+  </div>
+</form>
+{% endblock %}
