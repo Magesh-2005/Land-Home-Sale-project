@@ -1,3 +1,12 @@
-flask
-flask_sqlalchemy
-werkzeug
+Flask==3.0.3
+Flask-SQLAlchemy==3.1.1
+Werkzeug==3.0.3
+Jinja2==3.1.4
+itsdangerous==2.2.0
+click==8.1.7
+
+# Optional: Needed if deploying on Streamlit Cloud (to avoid import errors)
+streamlit==1.39.0
+
+# SQLite doesn't need installation (built-in with Python)
+
