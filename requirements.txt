@@ -10,3 +10,4 @@ streamlit==1.39.0
 
 # SQLite doesn't need installation (built-in with Python)
 
+gunicorn==23.0.0
