@@ -271,5 +271,5 @@ def init_db():
             db.session.commit()
 
 if __name__ == "__main__":
-    app.run(debug=True, use_reloader=False, port=3000)
+    app.run(debug=True, use_reloader=False, port=5000)
 
